@@ -1,11 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
-import Landing from './pages/Landing';
+import './App.sass';
+import Home from './pages/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <Landing/>
+    <Home/>
   );
 }
 
