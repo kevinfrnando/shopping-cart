@@ -10,10 +10,11 @@ export default ( state = initialState , action) => {
             amount : state.amount + action.cash
         }
     }
-    if( action.type === "REMOVE_MONEY"){
+    if( action.type === "SUBTRACT_MONEY"){
+        let _amount = state.amount - action.cash;
         return{
             ...state,
-            amount : state.amount - action.cash
+            amount : _amount < 0 ? 0 : _amount
         }
     }
     return state;

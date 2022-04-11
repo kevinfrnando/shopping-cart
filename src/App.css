@@ -1,0 +1,113 @@
+.App {
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  body{
+    background-image: url("../public/assets/background.png");
+    background-position: center top;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+
+
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+.div-scroll {
+    margin: 10px auto;
+    width: 90%;
+    height: 600px;
+    overflow: auto;
+    text-align:justify;
+}
+
+
+.cardCustom{
+    background-color: rgba(0, 0, 0, 0.9)!important;;
+    color: white;
+}
+
+.sidebar-container{
+    margin: 10px auto;
+    padding: 5px;
+    width: 90%;
+    overflow: auto;
+    text-align:justify;
+}
+
+.row-sidebar{
+    padding: 10px 0 ;
+    border-radius: 30px;
+}
+
+.cardImg{
+  height: 200px;
+  padding: 0 35px;
+}
+.cardCustom-car{
+    background-color: rgba(0, 0, 0, 0.9)!important;
+    color: white;
+    height: 100%;
+    border-radius: 25px;
+    padding: 25px;
+}
+.cardCustom:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.image-container{
+    height: 100px;
+    text-align: center;
+}
+
+.image-container img{
+    padding: 10px;
+    max-height: 100%;
+    width: auto;
+}
+
+.div-container{
+    text-align: center;
+}
+
+.card-payment{
+  text-align: left;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(52, 255, 103); 
+  }

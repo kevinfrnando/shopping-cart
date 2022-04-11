@@ -5,11 +5,11 @@ const addMoney = ( c ) =>{
     }
 }
 
-const removeMoney = ( c ) =>{
+const subtractMoney = ( c ) =>{
     return{
-        type : "REMOVE_MONEY",
-        cash: -c
+        type : "SUBTRACT_MONEY",
+        cash: c
     }
 }
 
-export { addMoney, removeMoney };
+export { addMoney, subtractMoney };

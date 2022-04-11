@@ -13,7 +13,7 @@ export default ( state = initialState, action  ) =>{
     if( action.type === "SUBTRACT_ITEM"){
         return{
             ...state ,
-            items : state.items - action.action
+            items : state.items <= 1 ? 0 : state.items - action.action
         }
     }
     return state;

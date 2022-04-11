@@ -1,45 +1,76 @@
-import { useEffect } from 'react';
-import { Offcanvas, Card, Col, Row } from 'react-bootstrap'
+import { Offcanvas, Card, Col, Row, Button, Image} from 'react-bootstrap'
 import { connect } from 'react-redux';
+import { addItem, removeItem } from '../store/item/action';
+import { addMoney, subtractMoney } from '../store/amount/action';
+import { plusItem, subtractItem } from "../store/counter/action";
+import { useNavigate } from 'react-router-dom';
 
 const mapStateToProps = ( state ) => {
     return {
         amount: state.amountReducer.amount,
-        items: state.itemsReducer.items
+        items: state.itemsReducer.items,
+        count : state.counterReducer.items
+
     }
 }
 
-function Sidebar( { show, handleClose , amount, items } ){
-    
+function Sidebar( { show, handleClose , amount, items, count, addItem, removeItem, plusItem, subtractItem, addMoney, subtractMoney} ){
+    const addOneMore = ( e )=>{
+        addItem( e );
+        addMoney( e.price )
+        plusItem();
+    }
+
+    const removeOne = ( e )=>{
+        removeItem( e );
+        subtractMoney( e.price );
+        subtractItem()
+    }
+
+    const navigate = useNavigate();
+
     return(
         <Offcanvas show={show} onHide={handleClose} placement='end' >
             <Offcanvas.Header closeButton>
             <Offcanvas.Title>Shopping Cart</Offcanvas.Title>
+                { count > 0 ?
+                    <Button variant="outline-success" onClick={ () => navigate("/payment")}>Go to pay <b>${ amount }</b></Button>
+                    : <></>
+                }
             </Offcanvas.Header>
-            <Offcanvas.Body>
-                <h2>{ amount }</h2>
+            <Offcanvas.Body className='sidebar-container'>
+                { 
+                    count > 0 ?
+                        items.map( ( e, i ) => (
+                            <Row key={i} className="row-sidebar">
+                                <Card key={i} className="cardCustom-car">
+                                    <Col>
+                                        <Card.Img className='cardImg' variant="top" src={e.image} />
+                                    </Col>
+                                    <Col>
+                                        <Card.Body style={{ textAlign:"center" }}>
+                                        <Card.Title > <b>${e.total}</b></Card.Title>
+                                        <Row className="justify-content-md-center">
+                                            <Col xs lg="2">
+                                                <Button variant="outline-danger" onClick={ () => removeOne( e )}>-</Button>
+                                            </Col>
+                                            <Col md="auto">{ e.count }</Col>
+                                            <Col xs lg="2">
+                                                <Button variant="outline-success" onClick={ () =>  addOneMore( e ) }>+</Button>
+                                            </Col>
+                                        </Row>
+                                        </Card.Body>
+                                    </Col>
+                                </Card>
+                            </Row>
+                        )) 
+                        :
+                        <Image src='./assets/emptyCar.png'></Image>
 
-                { items.map( ( e, i ) => (
-                    <Row key={i}>
-                        <Card key={i}>
-                            <Col>
-                                <Card.Img variant="top" src={e.image} />
-                            </Col>
-                            <Col>
-                                <Card.Body>
-                                <Card.Title>{ e.count } - {e.total}</Card.Title>
-                                <Card.Text>
-                                    This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.
-                                </Card.Text>
-                                </Card.Body>
-                            </Col>
-                        </Card>
-                    </Row>
-                )) }
+                }
             </Offcanvas.Body>
         </Offcanvas>
     )
 }
 
-export default connect (  mapStateToProps, {} )( Sidebar );
+export default connect (  mapStateToProps, { addItem, removeItem, plusItem, subtractItem, addMoney, subtractMoney } )( Sidebar );

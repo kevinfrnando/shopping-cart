@@ -1,5 +1,3 @@
-import { findDOMNode } from "react-dom";
-
 const initialState = {
     items : []
 };
@@ -7,7 +5,6 @@ const initialState = {
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default ( state = initialState , action) => {
-    // console.log( action )
     if( action.type === "ADD_ITEM"){
         return{
             ...state ,
@@ -17,7 +14,7 @@ export default ( state = initialState , action) => {
     if( action.type === "REMOVE_ITEM"){
         return{
             ...state,
-            // items : state.remove() 
+            items : noRepeatItems( state.items, action.obj, action.type )  
 
         }
     }
@@ -40,7 +37,9 @@ function noRepeatItems ( items, toFind, action ){
         if( action === "ADD_ITEM" ){
             find.count++;
             find.total = find.total + find.price;
-        }else{
+        }else if( find.count === 1 ){
+            return [ ...items]
+        } else{
             find.count--;
             find.total = find.total - find.price;
         }
