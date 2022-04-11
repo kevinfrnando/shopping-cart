@@ -9,7 +9,8 @@ This is a basic shopping cart project, built in react and uses some external lib
 - React Router Dom
 - React Hook Form
 
-This Shopping cart uses a public librery called [AmiiboAPI](https://amiiboapi.com/docs/) wich doesn´t require an api key, so you don´t need to provide any key
+This Shopping cart uses a public librery called [AmiiboAPI](https://amiiboapi.com/docs/) wich doesn´t require an api key, so you don´t need to provide any key.
+
 All the required libreries are in package.json, so the only thing you need to run the app is to type in terminal npm install
 
 ## Available Scripts
