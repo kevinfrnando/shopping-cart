@@ -3,7 +3,7 @@ import { Modal, Button, Row, Card, Col } from 'react-bootstrap';
 
 function ModalItem({show,handleClose, item}){
     useEffect(()=>{
-        console.log( item )
+        //console.log( item )
     }, [])
     return(
         <Modal 
